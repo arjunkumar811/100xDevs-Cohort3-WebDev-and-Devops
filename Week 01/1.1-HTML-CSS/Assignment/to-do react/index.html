@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+</head>
+<body>
+    <input type="text"></input>
+    <button onclick="AddTodo()">Add ToDo</button>
+    <button onclick="deleteLastTodo()">Delete Last ToDo</button>
+    <button onclick="deleteFirstTodo()">delete First Todo</button>
+  <div id="todos"></div>
+
+<script>
+    let todos = [];
+function AddTodo(){
+   todos.push({
+    title:document.querySelector("input").value
+   })
+   render()
+}
+
+function deleteLastTodo(){
+   todos.splice(todos.length-1, 1)
+   render()
+}
+
+function deleteFirstTodo(){
+   todos.splice(0, 1)
+   render()
+}
+
+function createTodoComponent(todo){
+    const  div = document.createElement("div");
+    const  h1 = document.createElement("h1");
+    const button = document.createElement("button");
+    h1.innerHTML = todo.title;
+    button.innerHTML = "Delete";
+    div.append(h1)
+    div.append(button)
+    return div;
+}
+
+//react
+
+
+function render(){
+    document.querySelector("#todos").innerHTML=" ";
+    for(let i= 0; i<todos.length; i++){
+        const element = createTodoComponent(todos[i]);
+        document.querySelector("#todos").appendChild(element);
+    }
+}
+</script>
+</body>
+</html>

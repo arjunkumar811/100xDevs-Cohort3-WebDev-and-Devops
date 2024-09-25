@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid Layout</title>
+    <style>
+        .container {
+            padding-left: 140px;
+            padding-right: 140px;
+            width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            background-color: black;
+            gap: 30px;
+        }
+
+        .vertical-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        .horizontal-center {
+            margin: 0 auto;
+            color: white;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        .grid .flex img{
+            width: 30px;
+            height: 30px;
+        }
+
+        .flex{
+            display: flex;
+            align-items: center;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="left">
+            <div>
+                <div class="horizontal-center">
+                    <div>
+                        <h2>Code in any language</h2>
+                        <p style="color:  rgb(136, 124, 124);;">VS Code supports almost every major programming language. Several ship in the box, like JavaScript,
+                            TypeScript, CSS, and HTML, but extensions for others can be found in the VS Code Marketplace.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <div class="grid">
+                    <div class="flex">
+                        <img src="https://code.visualstudio.com/assets/home/language-js.png" alt="Javascript">
+                        <code style="color: rgb(136, 124, 124);" class="verticalCenter">JavaScript</code>
+                    </div>
+                    <div class="flex">
+                        <img src="https://code.visualstudio.com/assets/home/language-ts.png" alt="TypeScript">
+                        <code style="color: rgb(136, 124, 124);" class="verticalCenter">TypeScript</code>
+                    </div>
+                    <div class="flex">
+                        <img src="https://code.visualstudio.com/assets/home/language-python.png" alt="Python">
+                        <code style="color:  rgb(136, 124, 124);;" class="verticalCenter">Python</code>
+                    </div>
+                    <div class="flex">
+                        <img src="https://code.visualstudio.com/assets/home/language-cs.png" alt="C#">
+                        <code style="color:  rgb(136, 124, 124);" class="verticalCenter">C#</code>
+                    </div>
+                    <div class="flex">
+                        <img src="https://code.visualstudio.com/assets/home/language-cpp.png" alt="C++">
+                        <code style="color:  rgb(136, 124, 124);" class="verticalCenter">C++</code>
+                    </div>
+                    <div class="flex">
+                        <img src="https://code.visualstudio.com/assets/home/language-html.png" alt="HTML">
+                        <code style="color:  rgb(136, 124, 124);" class="verticalCenter">HTML</code>
+                    </div>
+                    <div class="flex">
+                        <img src="https://code.visualstudio.com/assets/home/language-java.png" alt="Java">
+                        <code style="color:  rgb(136, 124, 124);" class="verticalCenter">Java</code>
+                    </div>
+                    <div class="flex"> 
+                        <img src="https://code.visualstudio.com/assets/home/language-json.png" alt="JSON">
+                        <code style="color:  rgb(136, 124, 124);" class="verticalCenter">JSON</code>
+                    </div>
+                    <div class="flex">
+                        <img src="https://code.visualstudio.com/assets/home/language-php.png" alt="PHP">
+                        <code style="color:  rgb(136, 124, 124);" class="verticalCenter">PHP</code>
+                    </div>
+                    <div class="flex">
+                        <img src="https://code.visualstudio.com/assets/home/language-markdown.png" alt="Markdown">
+                        <code style="color:  rgb(136, 124, 124);" class="verticalCenter">Markdown</code>
+                    </div>
+                    <div class="flex">
+                        <img src="https://code.visualstudio.com/assets/home/language-powershell.png" alt="Powershell">
+                        <code style="color:  rgb(136, 124, 124);" class="verticalCenter">Powershell</code>
+                    </div>
+                    <div class="flex">
+                        <img src="https://code.visualstudio.com/assets/home/language-yaml.png" alt="YAML">
+                        <code style="color:  rgb(136, 124, 124);" class="verticalCenter">YAML</code>
+                    </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
