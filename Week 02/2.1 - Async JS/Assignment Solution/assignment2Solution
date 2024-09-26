@@ -1,0 +1,19 @@
+// Create promisified vertion of fetch
+
+//function to create a promisified vertion of fetch
+function promisifiedFetch(url){
+
+    // return the promise that resolves after the fetch is comlete
+    return new Promise((resovle, reject)=>{
+        //fetch the data from the given url
+        fetch(url)
+        .then((data)=> resovle(data))// if the fetch is successful, resovle the promise with the data
+        .catch((error)=>reject(error));// if the fetch fails, reject the promise with erro
+    });
+}
+
+// call the promisifiedFetch function with the url of the data to fetch
+promisifiedFetch("a.txt")
+.then((respone)=> respone.json())
+.then((data)=> console.log(data))
+.catch((error)=> console.log(error));
