@@ -3,6 +3,7 @@ const adminRouter = Router();
 const{ adminModel, courseModel } = require("../db");
 const jwt = require("jsonwebtoken");
 const { JWT_ADMIN_PASSWORD } = require("../config");
+const { adminMiddleware } = require('../middleware/admin');
 
 
 adminRouter.post("/signup", async function(req, res){
@@ -23,14 +24,14 @@ res.json({
 adminRouter.post("/signin", async function(req, res){
     const { email, password } = req.body;
 
-    const user = await adminModel.findOne({
+    const admin = await adminModel.findOne({
         email: email,
         password: password
      });
     
-     if(user){
+     if(admin){
         const token = jwt.sign({
-            id: user._id
+            id: admin._id
         }, JWT_ADMIN_PASSWORD);
     
         res.json({
@@ -50,7 +51,7 @@ adminRouter.post("/signin", async function(req, res){
     adminRouter.post("/course", adminMiddleware, async function(req, res){
         const adminId = req.userId;
 
-        const { title, description, price, imageUrl,creatorId } = req.body;
+        const { title, description, price, imageUrl } = req.body;
 
         const course = await courseModel.create({
         title: title,
@@ -66,18 +67,43 @@ adminRouter.post("/signin", async function(req, res){
         });
     });
 
-    adminRouter.put("/course", function(req, res){
+    adminRouter.put("/course", adminMiddleware, async function(req, res){
+        const adminId = req.userId;
+
+        const { title, description, price, imageUrl,creatorId } = req.body;
+
+        const course = await courseModel.updateOne({
+            _id: courseId,
+            creatorId: adminId
+        }, 
+        {
+        title: title,
+        description: description,
+        imageUrl: imageUrl,
+        price: price,
+        })
+ 
         res.json({
-           message : "course endpoint",
+           message : "course created",
+           courseId: course._id
+        });
+    })
+       
+
+
+    adminRouter.get("/bulk", adminMiddleware, async function(req, res){
+        const adminId = req.userId;
+
+        const course = await courseModel.find({
+            creatorId: adminId
+        }); 
+    
+        res.json({
+           message : "courses you Have",
+           courses
         });
     });
-
-    adminRouter.get("/bulk", function(req, res){
-        res.json({
-           message : "course endpoint",
-        });
-    });
-
+    
     module.exports = {
         adminRouter: adminRouter
     }
