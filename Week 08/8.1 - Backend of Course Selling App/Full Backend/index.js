@@ -1,6 +1,9 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const jsonwebtoken = require("jsonwebtoken");
 const app = express();
+app.use(express.json());
+
 
 const { userRouter } = require("./router/user");
 const { courseRouter } = require("./router/course");
