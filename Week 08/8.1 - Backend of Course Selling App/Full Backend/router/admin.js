@@ -5,21 +5,48 @@ const { adminModel, courseModel } = require("../db");
 const { adminMiddleware } = require("../middleware/admin");
 const { JWT_ADMIN_PASSWORD } = require("../config");
 
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
+const zod = require("zod");
 
 
-
-adminRouter.post("/signup", adminMiddleware, function(req, res){
+adminRouter.post("/signup", adminMiddleware, async function(req, res){
     const requireBody = zod.object({
-        email: zod.string().email().min(5), // Email must be a valid format and at least 5 characters
-        password: zod.string().min(5), // Password must be at least 5 characters
-        firstName: zod.string().min(3), // First name must be at least 3 characters
-        lastName: zod.string().min(3), // Last name must be at least 3 characters
+        email: zod.string().email().min(5),
+        password: zod.string().min(5), 
+        firstName: zod.string().min(3), 
+        lastName: zod.string().min(3), 
     });
 
-    res.json({
+    const parseDataWithSuccess = requireBody.safeParse(req.body);
+
+    if(!parseDataWithSuccess.success){
+        return res.json({
+         message: "Incorrect Data",
+         error: parseDataWithSuccess.error,
+        });
+    }
+
+    const { email, password, firstName, lastName } = req.body;
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+try {
+    await adminModel.create({
+       email,
+       password,
+       firstName,
+       lastName,
+    });
+} catch (erroe) {
+    return res.status(400).json({
+      message: "You are already signup",
+    });
+}
+
+
+res.status(201).json({
     message: "SignUp Done"
-});
-    
+});  
 });
 
 adminRouter.post("/signin", function(req, res){
