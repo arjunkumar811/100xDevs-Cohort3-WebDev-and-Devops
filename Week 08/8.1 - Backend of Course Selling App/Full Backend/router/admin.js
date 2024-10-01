@@ -126,15 +126,60 @@ adminRouter.post("/course", adminMiddleware, async function(req, res){
     });
 });
 
- adminRouter.put("/course", function(req, res){
-    res.json({
-        message: "SignUp Done"
-    });
-        
+ adminRouter.put("/course", adminMiddleware, async function(req, res){
+    const requireBody = zod.object({
+     courseId: zod.string().min(5),
+     title: zod.string().min(3).optional(),
+     description: zod.string().min(5).optional(),
+     price: zod.number().positive().optional(),
     });
 
+    const parseDataWithSuccess = requireBody.safeParse(req.body);
 
-    adminRouter.delete("/course", function(req, res){
+    if(!parseDataWithSuccess) {
+        return res.json({
+        message: "Incorrect Data",\
+        error: parseDataWithSuccess.error,
+        });
+    }
+
+    const { courseId, title, description, price } = req.body;
+
+    const course = await courseModel.findOne({
+        _id: courseId,
+        creatorId: adminId,
+    });
+
+    if(!course) {
+        return res.status(404).json({
+            message: "Course Not found",
+        });
+    }
+
+    await courseModel.updateOne(
+     {
+        _id: courseId,
+        creatorId: adminId,
+     },
+      {
+        title: title || course.title, 
+        description: description || course.description,
+        imageUrl: imageUrl || course.imageUrl,
+        price: price || course.price,
+       }
+    );
+    
+    res.status(200).json({
+        message: "Course updated",
+    });   
+});
+
+
+adminRouter.delete("/course", adminMiddleware, async  function(req, res){
+       const adminId = req.adminId;
+       
+       const 
+     
         res.json({
             message: "SignUp Done"
      });
