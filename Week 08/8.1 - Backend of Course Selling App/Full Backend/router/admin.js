@@ -93,13 +93,38 @@ adminRouter.post("/signin", adminMiddleware, async function(req, res){
     });
 });
 
-adminRouter.post("/course", function(req, res){
-    res.json({
-            message: "SignUp Done"
-     });
-            
- });
+adminRouter.post("/course", adminMiddleware, async function(req, res){
+    const adminId = req.adminId;
 
+    const requireBody = zod.object({
+     title: zod.string().min(3),
+     description: zod.string().min(10),
+     price: zod.number().positive(),
+    });
+    
+    const parseDataWithSuccess = requireBody.safeParse(req.body);
+
+    if(!parseDataWithSuccess) {
+        return res.json({
+            messgae: "Incorrect Data Format",
+            error: parseDataWithSuccess.error,
+        });
+    }
+
+    const { title, description, price } = req.body;
+
+    const course = await courseModel.create({
+       title,
+       description,
+       price,
+       creatorId: adminId,
+    });
+  
+    res.status(201).json({
+        message: "Course created!",
+        courseId: course._id,
+    });
+});
 
  adminRouter.put("/course", function(req, res){
     res.json({
