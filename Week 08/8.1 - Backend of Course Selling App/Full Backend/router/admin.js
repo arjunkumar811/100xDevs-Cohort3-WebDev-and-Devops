@@ -49,12 +49,49 @@ res.status(201).json({
 });  
 });
 
-adminRouter.post("/signin", function(req, res){
+adminRouter.post("/signin", adminMiddleware, async function(req, res){
+    const requireBody = zod.object({
+        email: zod.string().email(),
+        password: zod.string().min(6),
+    });
+
+    const parseDataWithSuccess = requireBody.safeParse(req.body);
+    if(!parseDataWithSuccess) {
+        return res.json({
+            message: "Incorrect data",
+            error: parseDataWithSuccess.error,
+        });
+    }
+
+    const { email, password } = req.body;
+
+    const admin = await adminModel.findOne({
+        email: email,
+    });
+
+    if(!admin) {
+        return res.status(403).json({
+        message: "Invalid Credentials",
+        });
+    }
+
+    const passwordMatch = await bcrypt.compare(password, admin.password);
+
+    if(passwordMatch) {
+        const token = jwt.sign({ id: admin._id }, JWT_ADMIN_PASSWORD);
+
+        res.status(200).json({
+            token: token,
+        });
+    } else {
+        return res.status(403).json({
+           message: "Invalid Credentials",
+        });
+    }
     res.json({
         message: "SignIp Done"
     });
-        
-    });
+});
 
 adminRouter.post("/course", function(req, res){
     res.json({
