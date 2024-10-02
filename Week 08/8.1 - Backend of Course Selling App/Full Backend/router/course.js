@@ -37,7 +37,7 @@ res.status(201).json({
 });
 });
 
-courseRouter.post("/preview", function(req, res){
+courseRouter.post("/preview", userMiddleware, async function(req, res){
     res.json({
       message: "preview endpoint"
     });
