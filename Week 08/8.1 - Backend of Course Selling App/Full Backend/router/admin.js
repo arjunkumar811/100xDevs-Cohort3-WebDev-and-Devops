@@ -216,12 +216,16 @@ adminRouter.delete("/course", adminMiddleware, async  function(req, res){
 
 
 adminRouter.get("/course/bulk", adminMiddleware, async function(req, res){
+     const adminId = req.adminId;
+
+     const courses = await courseModel.findOne({
+     creatorId: adminId,
+     });
 
 
-    res.json({
-        message: "SignUp Done"
-    });
-        
+      res.status(200).json({
+       courses: courses,
+      });       
     });
 
     module.exports = {
