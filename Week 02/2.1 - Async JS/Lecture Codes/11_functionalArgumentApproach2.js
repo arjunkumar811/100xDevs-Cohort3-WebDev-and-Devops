@@ -24,3 +24,5 @@ function doOperation(a, b, op) {
     return val;
 }
 
+let ans1 = doOperation(1, 2, sum);
+console.log(ans1);
