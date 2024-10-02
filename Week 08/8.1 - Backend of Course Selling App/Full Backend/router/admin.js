@@ -164,7 +164,6 @@ adminRouter.post("/course", adminMiddleware, async function(req, res){
       {
         title: title || course.title, 
         description: description || course.description,
-        imageUrl: imageUrl || course.imageUrl,
         price: price || course.price,
        }
     );
@@ -177,16 +176,48 @@ adminRouter.post("/course", adminMiddleware, async function(req, res){
 
 adminRouter.delete("/course", adminMiddleware, async  function(req, res){
        const adminId = req.adminId;
+        
+       const requireBody = zod.object({
+         courseId: zod.string().min(5),
+       });
+
+       const parseDataWithSuccess = requireBody.safeParse(req.body);
+
+       if(!parseDataWithSuccess) {
+        return res.json({
+        message: "Incorrect data",
+        error: parseDataWithSuccess.error,
+        });
+       }
+
+       const { courseId } = req.body;
+
+       const course = await courseModel.findOne({
+        _id: courseId,
+        creatorId: adminId,
+       });
+
+       if(!course) {
+        return res.status(404).json({
+         message: "Course not found",
+        });
+       }
+
+       await courseModel.deleteOne({
+        _id: courseId,
+        creatorId: adminId,
+       });
        
-       const 
-     
         res.json({
-            message: "SignUp Done"
+            message: "Course Deleted",
      });
-            
 });
 
-adminRouter.get("/course/bulk", function(req, res){
+
+
+adminRouter.get("/course/bulk", adminMiddleware, async function(req, res){
+
+
     res.json({
         message: "SignUp Done"
     });
