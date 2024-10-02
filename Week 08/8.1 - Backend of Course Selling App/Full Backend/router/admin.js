@@ -2,7 +2,7 @@ const { Router } = require("express");
 const adminRouter = Router();
 
 const { adminModel, courseModel } = require("../db");
-const { adminMiddleware } = require("../middleware/admin");
+const { adminMiddleware } = require("../middlewares/admin");
 const { JWT_ADMIN_PASSWORD } = require("../config");
 
 const jwt = require("jsonwebtoken");
@@ -37,7 +37,7 @@ try {
        firstName,
        lastName,
     });
-} catch (erroe) {
+} catch (error) {
     return res.status(400).json({
       message: "You are already signup",
     });
@@ -89,7 +89,7 @@ adminRouter.post("/signin", adminMiddleware, async function(req, res){
         });
     }
     res.json({
-        message: "SignIp Done"
+        message: "SignIn Done"
     });
 });
 
