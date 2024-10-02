@@ -37,12 +37,16 @@ res.status(201).json({
 });
 });
 
-courseRouter.post("/preview", userMiddleware, async function(req, res){
-    res.json({
-      message: "preview endpoint"
-    });
-    });
+courseRouter.get("/preview", async function(req, res){
+ 
+  
+  const courses = await courseModel.find({});
 
+  res.status(200).json({
+    courses: courses,
+});
+});
+  
     module.exports = {
         courseRouter: courseRouter,
-    }
+    };
