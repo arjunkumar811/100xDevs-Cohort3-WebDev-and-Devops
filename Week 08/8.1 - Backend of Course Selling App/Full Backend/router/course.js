@@ -1,6 +1,12 @@
 const { Router } = require("express");
 const courseRouter = Router();
 
+const { purchaseModel, courseModel } = require("../db");
+
+const { userMiddleware } = require("../middlewares/user");
+
+
+
 courseRouter.post("/purchase", function(req, res){
 res.json({
   message: "Purchase endpoint"
