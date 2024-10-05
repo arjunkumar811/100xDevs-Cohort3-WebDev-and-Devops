@@ -10,6 +10,12 @@ const existingAdmin = await Admin.findOne({
 username: username,
 });
 
+if(existingAdmin) {
+    return res.status(400).json({
+      message: "Admin is already exist",
+    });
+}
+
 });
 
 userRouter.post("/signin", function(req, res){
