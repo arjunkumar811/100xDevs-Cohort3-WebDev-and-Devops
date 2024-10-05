@@ -1,9 +1,9 @@
 const express = require("express");
 const { Admin } = require("../db");
 const { JWT_SECRET } = require("../config");
-const userRouter = express.Router();
+const adminRouter = express.Router();
 
-userRouter.post("/signup", async function(req, res){
+adminRouter.post("/signup", async function(req, res){
 const username = req.body.username;
 const password = req.body.password;
 
@@ -27,7 +27,7 @@ res.status(201).json({
 });
 });
 
-userRouter.post("/signin", async function(req, res){
+adminRouter.post("/signin", async function(req, res){
     const username = req.body.username;
     const password = req.body.password;
 
@@ -49,5 +49,7 @@ userRouter.post("/signin", async function(req, res){
             message: "Incorrect username and password", 
         });
     }
-
 });
+
+adminRouter.post("/courses", )
+
