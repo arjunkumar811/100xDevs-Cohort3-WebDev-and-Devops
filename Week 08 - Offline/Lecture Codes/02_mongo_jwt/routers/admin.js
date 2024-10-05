@@ -29,4 +29,9 @@ res.status(201).json({
 userRouter.post("/signin", async function(req, res){
     const username = req.body.username;
     const password = req.body.password;
+
+    const user = await Admin.findOne({
+        username,
+        password 
+    });
 });
