@@ -21,8 +21,8 @@ adminrouter.post("/signup", async function(req, res){
   await AdminModel.create({ username, password });
 
   res.status(201).json({
-  message: "Admin created successfully",
-  });
+    message: "Admin created successfully",
+    });
 });
 
 
