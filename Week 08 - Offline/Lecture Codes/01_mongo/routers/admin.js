@@ -27,7 +27,7 @@ adminrouter.post("/signup", async function(req, res){
 
 
 adminrouter.post("/courses", adminMiddleware, function(req, res){
-
+  const { title, description, price } = req.body;
 });
 
 
