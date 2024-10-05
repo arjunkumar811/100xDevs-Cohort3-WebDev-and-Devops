@@ -12,7 +12,14 @@ function userMiddleware(req, res, next){
  .then(function (error){
    if(user) {
     next();
-   }
+   } else {
+    res.status(403).json({
+       message: "User Not exixt",
+    });
+   } 
+ })
+ .catch(error => {
+  
  });
 
 };
