@@ -51,6 +51,11 @@ adminrouter.get("/courses", function(req, res){
         courses: response,
        });
     })
+    .catch(error) {
+        res.status(500).json({
+            message: "Error while fetching courses "
+        })
+    }
 });
 
 
