@@ -19,6 +19,9 @@ if(existingUser) {
 
 await UserModel.create({ username, password });
 
+res.status(201).json({
+  message: "User created successfully",
+});
 });
 
 
