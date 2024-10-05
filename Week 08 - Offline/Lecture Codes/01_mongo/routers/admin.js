@@ -6,9 +6,12 @@ const adminMiddleware = require("../middlewares/admin");
 const adminrouter = express.Router();
 
 
-adminrouter.post("/signup", function(req, res){
+adminrouter.post("/signup", async function(req, res){
      const username = req.body.username;
      const password = req.body.password;
+
+     const existingAdmin = await AdminModel.findOne({ username });
+     
 });
 
 
