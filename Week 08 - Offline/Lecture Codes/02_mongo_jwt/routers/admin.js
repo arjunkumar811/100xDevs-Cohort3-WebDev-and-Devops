@@ -40,6 +40,10 @@ userRouter.post("/signin", async function(req, res){
         const token = jwt.sign({
             username
         }, JWT_SECRET);
+
+        return res.status(200).json({
+            token: token, 
+        });
     }
 
 });
