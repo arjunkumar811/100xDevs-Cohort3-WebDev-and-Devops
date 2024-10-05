@@ -1,10 +1,9 @@
 const express = require("express");
-const { AdminModel } = require("../db");
+const { AdminModel, CourseModel } = require("../db");
 
+const adminMiddleware = require("../middlewares/admin");
 
 const adminrouter = express.Router();
-
-
 
 
 adminrouter.post("/signup", function(req, res){
