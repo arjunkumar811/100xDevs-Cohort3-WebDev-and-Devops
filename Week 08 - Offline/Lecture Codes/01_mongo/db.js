@@ -18,3 +18,9 @@ const AdminSchema = new mongoose.Schema({
    password: String
 });
 
+const CourseSchema = new mongoose.Schema({
+   title: String,
+ description: String,
+ price: Number,
+});
+
