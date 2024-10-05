@@ -4,5 +4,17 @@ mongoose.connect("mongodb+srv://itagiarjun123:bassu%40123@cluster0.4gdfr.mongodb
 
 const  UserSchema = new mongoose.Schema({
    username: { type: String, unique: true },
+   password: String,
+   purchasedCourses: [
+     {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Course",
+     }
+   ],
+});
+
+const AdminSchema = new mongoose.Schema({
+   username: { type: String, unique:true },
    password: String
 });
+
