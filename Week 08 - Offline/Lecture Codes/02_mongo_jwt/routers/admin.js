@@ -72,5 +72,9 @@ adminRouter.post("/courses", adminMiddleware, async (req, res) => {
 
 adminRouter.get("/courses", adminMiddleware, async (req, res) => {
     const response = await Course.find({});
+
+    res.status(200).json({
+        courses: response, 
+    });
 });
 
