@@ -27,3 +27,10 @@ price: Number,
 const Admin = monggose.model("Admin", AdminSchema);
 const User = monggose.model("User", UserSchema);
 const Course = mongoose.model("Course", CourseSchema);
+
+
+module.exports = {
+    Admin,
+    User,
+    Course,
+}; 
