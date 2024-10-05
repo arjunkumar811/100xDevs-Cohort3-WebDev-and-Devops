@@ -1,5 +1,6 @@
 const express = require("express");
 const { UserModel, CourseModel } = require("../db");
+const { userMiddleware } = require("../middlewares/user");
 
 const userrouter = express.Router();
 
@@ -34,7 +35,10 @@ res.status(200).json({
 });
 
 
-userrouter.post("/courses/:courseId", function(req, res){
+userrouter.post("/courses/:courseId", userMiddleware, async function(req, res){
+
+
+
 
 });
 
