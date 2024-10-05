@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+import { model } from './node_modules/mongoose/types/index.d';
 
 const AdminSchema = new mongoose.Schema({
 username: { type: String, unique: true },
@@ -22,3 +23,7 @@ title: String,
 description: String,
 price: Number,
 });
+
+const Admin = monggose.model("Admin", AdminSchema);
+const User = monggose.model("User", UserSchema);
+const Course = mongoose.model("Course", CourseSchema);
