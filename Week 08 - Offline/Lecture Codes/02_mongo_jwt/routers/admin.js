@@ -16,6 +16,9 @@ if(existingAdmin) {
     });
 }
 
+await Admin.create({
+    username,
+    password,
 });
 
 userRouter.post("/signin", function(req, res){
