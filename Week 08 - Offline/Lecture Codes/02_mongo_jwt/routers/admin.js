@@ -44,6 +44,10 @@ userRouter.post("/signin", async function(req, res){
         return res.status(200).json({
             token: token, 
         });
+    } else {
+        return res.status(400).json({
+            message: "Incorrect username and password", 
+        });
     }
 
 });
