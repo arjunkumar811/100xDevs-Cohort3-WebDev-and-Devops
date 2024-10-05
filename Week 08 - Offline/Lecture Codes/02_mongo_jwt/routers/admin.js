@@ -26,6 +26,7 @@ res.status(201).json({
 });
 });
 
-userRouter.post("/signin", function(req, res){
-
+userRouter.post("/signin", async function(req, res){
+    const username = req.body.username;
+    const password = req.body.password;
 });
