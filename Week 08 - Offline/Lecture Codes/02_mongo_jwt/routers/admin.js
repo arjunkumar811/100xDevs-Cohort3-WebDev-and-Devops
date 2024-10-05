@@ -1,5 +1,6 @@
 const express = require("express");
 const { Admin } = require("../db");
+const { JWT_SECRET } = require("../config");
 const userRouter = express.Router();
 
 userRouter.post("/signup", async function(req, res){
@@ -34,4 +35,11 @@ userRouter.post("/signin", async function(req, res){
         username,
         password 
     });
+
+    if(user) {
+        const token = jwt.sign({
+            username
+        }, JWT_SECRET);
+    }
+
 });
