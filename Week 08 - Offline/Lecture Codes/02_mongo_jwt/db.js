@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
-import { model } from './node_modules/mongoose/types/index.d';
+
+
 
 const AdminSchema = new mongoose.Schema({
 username: { type: String, unique: true },
