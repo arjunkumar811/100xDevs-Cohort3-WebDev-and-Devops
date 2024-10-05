@@ -42,8 +42,10 @@ adminrouter.post("/courses", adminMiddleware, async function(req, res){
 });
 
 
-adminrouter.get("/courses", function(req, res){
 
+adminrouter.get("/courses", function(req, res){
+// find all the Courses you have
+    CourseModel.find({})
 });
 
 
