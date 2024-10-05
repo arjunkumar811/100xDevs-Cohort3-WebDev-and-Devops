@@ -15,3 +15,10 @@ const UserSchema = new monggose.Schema({
         },
     ],
 });
+
+
+const CourseSchema = new mongoose.Schema({
+title: String,
+description: String,
+price: Number,
+});
