@@ -56,8 +56,7 @@ adminrouter.get("/courses", function(req, res){
      message: "Error while fetching courses "
     });
 });
-
-
+});
 
 module.exports = {
     adminrouter : adminrouter,

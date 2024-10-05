@@ -3,7 +3,8 @@ const express = require("express");
 const userrouter = express.Router();
 
 userrouter.post("/signup", function(req, res){
-
+const username = req.body.username;
+const password = req.body.password;
 });
 
 
