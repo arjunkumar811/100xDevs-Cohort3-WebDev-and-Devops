@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
-
-const {  }
+const { MONGO_URL } = require("./config");
 
 const AdminSchema = new mongoose.Schema({
 username: { type: String, unique: true },
