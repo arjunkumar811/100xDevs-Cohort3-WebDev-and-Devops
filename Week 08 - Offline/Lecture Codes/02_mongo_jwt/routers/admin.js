@@ -1,6 +1,7 @@
 const express = require("express");
 const { Admin } = require("../db");
 const { JWT_SECRET } = require("../config");
+const adminMiddleware = require("./middlewares/admin");
 const adminRouter = express.Router();
 
 adminRouter.post("/signup", async function(req, res){
@@ -51,5 +52,5 @@ adminRouter.post("/signin", async function(req, res){
     }
 });
 
-adminRouter.post("/courses", )
+adminRouter.post("/courses", adminMiddleware,)
 
