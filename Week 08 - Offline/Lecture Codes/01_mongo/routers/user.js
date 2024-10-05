@@ -16,7 +16,12 @@ if(existingUser) {
     message: "User already exist",
     });
 }
+
+await UserModel.create({ username, password });
+
 });
+
+
 
 
 userrouter.get("/courses", function(req, res){
