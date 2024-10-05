@@ -70,5 +70,7 @@ adminRouter.post("/courses", adminMiddleware, async (req, res) => {
 });
 
 
-adminRouter.get("/courses", adminMiddleware,)
+adminRouter.get("/courses", adminMiddleware, async (req, res) => {
+    const response = await Course.find({});
+});
 
