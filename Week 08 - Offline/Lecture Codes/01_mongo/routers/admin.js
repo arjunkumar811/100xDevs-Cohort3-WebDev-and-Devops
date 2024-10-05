@@ -26,8 +26,19 @@ adminrouter.post("/signup", async function(req, res){
 });
 
 
-adminrouter.post("/courses", adminMiddleware, function(req, res){
+adminrouter.post("/courses", adminMiddleware, async function(req, res){
   const { title, description, price } = req.body;
+
+  const newCourse = await CourseModel.create({
+    title,
+    description,
+    price,
+  });
+
+  res.status(201).json({
+  message : "Course is Created",
+  courseId: newCourse._id,
+  });
 });
 
 
