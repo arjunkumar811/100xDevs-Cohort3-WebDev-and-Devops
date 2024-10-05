@@ -21,6 +21,11 @@ await Admin.create({
     password,
 });
 
+res.status(201).json({
+    message: "Admin created successfully", 
+});
+});
+
 userRouter.post("/signin", function(req, res){
 
 });
