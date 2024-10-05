@@ -39,6 +39,20 @@ userrouter.post("/courses/:courseId", userMiddleware, async function(req, res){
     const courseId = req.params.courseId;
     const username = req.headers.username;
 
+    try {
+        await User.updateOne(
+            { username }, 
+            { "$push": { purchasedCourses: courseId } }
+        );
+    } catch (err) { 
+     return res.status(400).json({
+            message: "Course purchase failed",
+            error: err.message,
+        });
+    }
+    res.status(200).json({
+        message: "Course purchased successfully",
+    });
 });
 
 userrouter.get("/purchasedCourses", function(req, res){
