@@ -1,5 +1,5 @@
 const express = require("express");
-const { UserModel } = require("../db");
+const { UserModel, CourseModel } = require("../db");
 
 const userrouter = express.Router();
 
@@ -25,10 +25,12 @@ res.status(201).json({
 });
 
 
-
-
-userrouter.get("/courses", function(req, res){
-
+userrouter.get("/courses", async function(req, res){
+   const courses = await CourseModel.findOne({});
+  
+res.status(200).json({
+ courses,
+}); 
 });
 
 
