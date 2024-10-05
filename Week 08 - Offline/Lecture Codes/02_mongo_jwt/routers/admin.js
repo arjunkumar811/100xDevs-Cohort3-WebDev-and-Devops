@@ -1,5 +1,5 @@
 const express = require("express");
-const { Admin } = require("../db");
+const { Admin, Course } = require("../db");
 const { JWT_SECRET } = require("../config");
 const adminMiddleware = require("./middlewares/admin");
 const adminRouter = express.Router();
@@ -62,5 +62,11 @@ adminRouter.post("/courses", adminMiddleware, async (req, res) => {
         description,
         price,
     });
-} )
+
+    res.status(201).json({
+        message: "Course created successfully", // Confirm course creation
+        courseId: newCourse._id, 
+    });
+
+});
 
