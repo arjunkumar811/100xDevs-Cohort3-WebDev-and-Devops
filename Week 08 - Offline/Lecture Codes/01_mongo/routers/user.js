@@ -55,8 +55,15 @@ userrouter.post("/courses/:courseId", userMiddleware, async function(req, res){
     });
 });
 
-userrouter.get("/purchasedCourses", function(req, res){
+userrouter.get("/purchasedCourses", userMiddleware, async function(req, res){
 
+    const user = await User.findOne({ username: req.headers.username });
+
+    const courses = await Course.find({
+        _id: { "$in": user.purchasedCourses }
+    });
+
+    res.status(200).json({ courses });
 });
 
 
