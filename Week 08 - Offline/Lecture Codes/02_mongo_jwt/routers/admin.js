@@ -78,3 +78,8 @@ adminRouter.get("/courses", adminMiddleware, async (req, res) => {
     });
 });
 
+
+module.exports = {
+adminRouter: adminRouter,
+};
+
