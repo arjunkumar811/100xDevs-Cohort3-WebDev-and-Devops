@@ -51,7 +51,6 @@ adminrouter.get("/courses", function(req, res){
         courses: response,
        });
     })
-    .
 });
 
 
