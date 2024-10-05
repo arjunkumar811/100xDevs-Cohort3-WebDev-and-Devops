@@ -4,3 +4,8 @@ const JWT_SECRET = "ASAN HAI";
 
 const PORT = 3000;
 
+module.exports = {
+    JWT_SECRET,
+    MONGO_URL,
+    PORT,
+};
