@@ -11,7 +11,12 @@ adminrouter.post("/signup", async function(req, res){
      const password = req.body.password;
 
      const existingAdmin = await AdminModel.findOne({ username });
-     
+
+     if(existingAdmin) {
+        return res.status(400).json({
+            message: "Admin is already exist",
+        });
+     }
 });
 
 
