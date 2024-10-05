@@ -67,6 +67,8 @@ adminRouter.post("/courses", adminMiddleware, async (req, res) => {
         message: "Course created successfully", // Confirm course creation
         courseId: newCourse._id, 
     });
-
 });
+
+
+adminRouter.get("/courses", adminMiddleware,)
 
