@@ -36,7 +36,8 @@ res.status(200).json({
 
 
 userrouter.post("/courses/:courseId", userMiddleware, async function(req, res){
-
+    const courseId = req.params.courseId;
+    const username = req.headers.username;
 
 
 
