@@ -52,5 +52,9 @@ adminRouter.post("/signin", async function(req, res){
     }
 });
 
-adminRouter.post("/courses", adminMiddleware,)
+adminRouter.post("/courses", adminMiddleware, async (req, res) => {
+    const title = req.body.title;
+    const description = req.body.description;
+    const price = req.body.price;
+} )
 
