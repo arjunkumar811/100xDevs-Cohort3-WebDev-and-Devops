@@ -9,7 +9,7 @@ function userMiddleware(req, res, next){
     username: username,
     password: password,
  })
- .then(function (error){
+ .then(function (user){
    if(user) {
     next();
    } else {
@@ -24,7 +24,7 @@ function userMiddleware(req, res, next){
    error: error,
    });
  });
-};
+}
 
 module.exports = {
     userMiddleware: userMiddleware,

@@ -1,5 +1,10 @@
 const express = require("express");
+const { AdminModel } = require("../db");
+
+
 const adminrouter = express.Router();
+
+
 
 
 adminrouter.post("/signup", function(req, res){
