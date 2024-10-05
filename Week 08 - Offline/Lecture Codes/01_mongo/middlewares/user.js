@@ -8,6 +8,11 @@ function userMiddleware(req, res, next){
  UserModel.findOne({
     username: username,
     password: password,
+ })
+ .then(function (error){
+   if(user) {
+    next();
+   }
  });
 
 };
