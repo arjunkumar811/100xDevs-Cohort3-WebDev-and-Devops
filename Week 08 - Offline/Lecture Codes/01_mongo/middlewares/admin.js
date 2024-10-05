@@ -1,3 +1,4 @@
+const { model } = require("mongoose");
 const { AdminModel } = require("../db");
 
 function adminMiddleware(req, res, next) {
@@ -26,3 +27,7 @@ function adminMiddleware(req, res, next) {
  })
 };
 
+
+model.exports = {
+    adminMiddleware: adminMiddleware,
+};
