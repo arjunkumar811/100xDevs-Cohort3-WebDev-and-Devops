@@ -17,6 +17,9 @@ adminrouter.post("/signup", async function(req, res){
             message: "Admin is already exist",
         });
      }
+
+
+     
 });
 
 
