@@ -15,8 +15,36 @@
     color: "white"
    }
 
+   function onPress() {
+state.count++;
 
 
+state.color = Math.random() > 0.5 ? "red" : "yellow";
+
+buttonComponentReRender();
+}
+
+function buttonComponent() {
+    const button = document.createElement("button");
+
+    button.innerHTML = `Counter ${count}`;
+
+    button.setAttribute("onclick", `onPress()`);
+
+    button.style.color = state.color;
+
+    return button;
+}
+
+function buttonComponentReRender() {
+            document.getElementById("buttonParent").innerHTML = "";
+
+            const component = buttonComponent(state.count);
+
+            document.getElementById("buttonParent").appendChild(component);
+        }
+
+        buttonComponentReRender();
     </script>
 
 </body>
