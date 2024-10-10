@@ -2,14 +2,22 @@ import { useEffect, useState } from "react";
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import { useEffect } from 'react';
 
 function App() {
   const [currentTab, setCurrentTab] = useState(1);
-  const [tabData, setTabdata] = useState({});
-  const [loading, setLoding] = useState(true);
+  const [tabData, setTabData] = useState({});
+  const [loading, setLoading] = useState(true);
 
-  
+  useEffect(function() {
+    setLoading(true);
+    fetch("https://jsonplaceholder.typicode.com/todos/" + currentTab)
+      .then(async res => {
+        const json = await res.json();
+        setTabData(json);
+        setLoading(false);
+      });
+
+  }, [currentTab])
 
   return (
     <>
@@ -25,6 +33,8 @@ function App() {
       <button onClick={function() {
         setCurrentTab(1)
       }} style={{color: currentTab == 4 ? "red" : "black" }}>Todo #4</button>
+      <br /> 
+      {loading ? "Loading..." : tabData.title}
     </>
   )
 }
