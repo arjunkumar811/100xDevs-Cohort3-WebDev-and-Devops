@@ -5,7 +5,9 @@ import './App.css'
 import { useEffect } from 'react';
 
 function App() {
-  
+  const [currentTab, setCurrentTab] = useState(1);
+  const [tabData, setTabdata] = useState({});
+  const [loading, setLoding] = useState(true);
 
   
 
