@@ -34,7 +34,13 @@ const Modal = ({ isOpen, onClose, children }) => {
 };
 
 
+const App = () => {
+  const [isModalOpen, setModalOpen] = useState(false);
 
+  return (
+    
+  )
+}
 
 
 
