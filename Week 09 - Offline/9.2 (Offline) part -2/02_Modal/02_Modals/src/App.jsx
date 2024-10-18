@@ -42,7 +42,7 @@ const App = () => {
        <button  onClick={() => setModalOpen(true)}>Open Modal</button>
       <Modal isOpen={isModalOpen} onClose={() => setModalOpen(false)}>
         <h2>Modal Title</h2>
-        <p>This is some content inside the modal</p>
+        <p>This is some content inside modal</p>
       </Modal>
     </div>
   )
