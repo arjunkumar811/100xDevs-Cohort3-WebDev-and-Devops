@@ -1,16 +1,13 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
 
-function App() {
-
-
-  return (
-    <>
-      
-    </>
-  )
+const App = () => {
+  return <Greeting name="Arjun"/>
 }
 
+const Greeting = ({ name }) => {
+   return <h1> Hello, {name}!, </h1>
+}
+ 
+
+ 
 export default App
