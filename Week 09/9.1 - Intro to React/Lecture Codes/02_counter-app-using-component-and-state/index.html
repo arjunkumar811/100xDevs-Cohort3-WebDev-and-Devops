@@ -38,13 +38,11 @@ function buttonComponent() {
 
 function buttonComponentReRender() {
             document.getElementById("buttonParent").innerHTML = "";
-
             const component = buttonComponent(state.count);
-
             document.getElementById("buttonParent").appendChild(component);
         }
 
-        ();
+        buttonComponentReRender();
     </script>
 
 </body>
