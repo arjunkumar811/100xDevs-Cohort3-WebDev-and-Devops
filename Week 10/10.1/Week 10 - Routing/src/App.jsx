@@ -11,12 +11,15 @@ function App() {
     <>
       <BrowserRouter>
       <Routes>
-
-
+<Route path='/neet/online-coaching-class-11' element = {<Class11Program/>} />
+<Route path='/neet/online-coaching-class-12' element = {<Class12Program/>} />
+<Route path='/' element = {<Landing Page/>} />
       </Routes>
       </BrowserRouter>
     </>
   )
 }
+
+
 
 export default App
