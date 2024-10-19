@@ -13,11 +13,29 @@ function App() {
       <Routes>
 <Route path='/neet/online-coaching-class-11' element = {<Class11Program/>} />
 <Route path='/neet/online-coaching-class-12' element = {<Class12Program/>} />
-<Route path='/' element = {<Landing Page/>} />
+<Route path='/' element = {<Landing/>} />
       </Routes>
       </BrowserRouter>
     </>
   )
+
+  function Landing() {
+    return <div>
+      welcome to Allen
+    </div>
+  }
+
+function Class11Program() {
+  return <div>
+    welcome to Allen
+  </div>
+}
+
+function Class12Program() {
+  return <div>
+    welcome to Allen
+  </div>
+  }
 }
 
 
