@@ -10,13 +10,6 @@ function App() {
   return (
     <>
       <BrowserRouter>
-
-<Link to="/">Allen</Link>
-| 
-<Link to="/neet/online-coaching-class-11">Class 11</Link>
-|
-<Link to="/neet/online-coaching-class-12">Class 12</Link>
-
       <Routes>
         <Route path='/'element={<Layout />} />
 <Route path='/neet/online-coaching-class-11' element = {<Class11Program/>} />
@@ -30,10 +23,24 @@ function App() {
 
 
   function Layout() {
-    return <div>
-      
+    return <div style={{height: "100vh"}}>
+<Header />
+<div style={{height: "90vh", background: "red"}}>
+  <Outlet />
+</div>
+footer
     </div>
   }
+
+
+
+  function Header() {
+<Link to="/">Allen</Link>
+| 
+<Link to="/neet/online-coaching-class-11">Class 11</Link>
+|
+<Link to="/neet/online-coaching-class-12">Class 12</Link>
+}
 
   function ErrorPage() {
    return <div>
