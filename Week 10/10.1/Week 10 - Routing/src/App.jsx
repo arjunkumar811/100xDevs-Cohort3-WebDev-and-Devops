@@ -34,13 +34,13 @@ function App() {
 
 function Class11Program() {
   return <div>
-    welcome to Allen
+    welcome to 11 
   </div>
 }
 
 function Class12Program() {
   return <div>
-    welcome to Allen
+    welcome to 12
   </div>
   }
 }
