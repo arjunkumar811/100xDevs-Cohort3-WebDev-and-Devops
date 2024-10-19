@@ -21,10 +21,17 @@ function App() {
 <Route path='/neet/online-coaching-class-11' element = {<Class11Program/>} />
 <Route path='/neet/online-coaching-class-12' element = {<Class12Program/>} />
 <Route path='/' element = {<Landing/>} />
+<Route path='*' element={<ErrorPage/>} />
       </Routes>
       </BrowserRouter>
     </>
   )
+
+  function ErrorPage() {
+   return <div>
+ Sorry page is not Found
+    </div>
+  }
 
   function Landing() {
     return <div>
