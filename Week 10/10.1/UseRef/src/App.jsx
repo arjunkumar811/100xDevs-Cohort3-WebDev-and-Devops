@@ -35,8 +35,8 @@ const addMessages = () => {
 
 // Scroll to the bottom whenever a new message is added
 useEffect(() => {
-
-} []);
+chatBoxRef.current.scrollTop = chatBoxRef.current.scrollHeight;
+}, [messages]);
 
 
 
