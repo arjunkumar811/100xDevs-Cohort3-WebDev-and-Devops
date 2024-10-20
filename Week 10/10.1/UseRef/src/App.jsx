@@ -23,4 +23,4 @@ function FocusInput() {
   )
 }
 
-export default App
+export default FocusInput

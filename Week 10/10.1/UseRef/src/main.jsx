@@ -1,10 +1,11 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import App from './App.jsx'
+FocusInput
 import './index.css'
+import FocusInput from './App'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
+    <FocusInput />
   </StrictMode>,
 )
