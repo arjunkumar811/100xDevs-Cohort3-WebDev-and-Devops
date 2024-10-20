@@ -28,8 +28,11 @@ function Chat() {
   const [messages, setMessages] = useState(["Hello!, "How are you?]);
   const chatBoxRef = useRef(null);
 
+// function to simulate adding new messages
+const addMessages = () => {
+  setMessages((prevMessages) => [...prevMessages, "New message!"]);
+};
 
-  
 }
 
 
