@@ -57,15 +57,37 @@ import './App.css'
 // }
 
 
-function StopWatch() {
+function Stopwatch() {
   const [time, setTime] = useState(0);
+  const intervalref = useRef(null);
+
+  const startTimer = () => {
+    if(intervalref.current !== null) return;
+
+    intervalref.current = setInterval(() => {
+      setTime((prevTime) => prevTime + 1);
+    }, 1000);
+  };
+const stopTimer = () => {
+  clearInterval(intervalref.current);
+  intervalref.current = null;
+};
+
+
+return (
+  <div>
+    <h1>Timer: {time}</h1>
+      <button onClick={startTimer}>Start</button>
+      <button onClick={stopTimer}>Stop</button>
+  </div>
+);
 }
 
 
 function Apps() {
   return (
     <div>
-      <Chat />
+      <Stopwatch />
     </div>
   )
 }
