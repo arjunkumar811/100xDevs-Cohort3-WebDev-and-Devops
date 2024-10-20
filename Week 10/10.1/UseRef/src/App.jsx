@@ -25,11 +25,11 @@ import './App.css'
 
 
 function Chat() {
-  const [messages, setMessages] = useState(["Hello!, "How are you?]);
+  const [messages, setMessages] = useState(["Hello!"]);
   const chatBoxRef = useRef(null);
 
 // function to simulate adding new messages
-const addMessages = () => {
+const addMessage = () => {
   setMessages((prevMessages) => [...prevMessages, "New message!"]);
 };
 
@@ -61,7 +61,7 @@ return (
 function Apps() {
   return (
     <div>
-      <FocusInput/ >
+      <Chat />
     </div>
   )
 }
