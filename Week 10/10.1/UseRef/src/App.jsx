@@ -23,4 +23,12 @@ function FocusInput() {
   )
 }
 
-export default FocusInput
+function Apps() {
+  return (
+    <div>
+      <FocusInput/ >
+    </div>
+  )
+}
+
+export default Apps
