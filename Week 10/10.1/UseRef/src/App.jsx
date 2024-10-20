@@ -24,38 +24,42 @@ import './App.css'
 // }
 
 
-function Chat() {
-  const [messages, setMessages] = useState(["Hello!"]);
-  const chatBoxRef = useRef(null);
+// function Chat() {
+//   const [messages, setMessages] = useState(["Hello!"]);
+//   const chatBoxRef = useRef(null);
 
-// function to simulate adding new messages
-const addMessage = () => {
-  setMessages((prevMessages) => [...prevMessages, "New message!"]);
-};
+// // function to simulate adding new messages
+// const addMessage = () => {
+//   setMessages((prevMessages) => [...prevMessages, "New message!"]);
+// };
 
-// Scroll to the bottom whenever a new message is added
-useEffect(() => {
-chatBoxRef.current.scrollTop = chatBoxRef.current.scrollHeight;
-}, [messages]);
-
-
+// // Scroll to the bottom whenever a new message is added
+// useEffect(() => {
+// chatBoxRef.current.scrollTop = chatBoxRef.current.scrollHeight;
+// }, [messages]);
 
 
-return (
-  <div>
-  <div 
-    ref={chatBoxRef} 
-    style={{ height: "200px", overflowY: "scroll", border: "1px solid black" }}
-  >
-    {messages.map((msg, index) => (
-      <div key={index}>{msg}</div>
-    ))}
-  </div>
-  <button onClick={addMessage}>Add Message</button>
-</div>
-);
+
+
+// return (
+//   <div>
+//   <div 
+//     ref={chatBoxRef} 
+//     style={{ height: "200px", overflowY: "scroll", border: "1px solid black" }}
+//   >
+//     {messages.map((msg, index) => (
+//       <div key={index}>{msg}</div>
+//     ))}
+//   </div>
+//   <button onClick={addMessage}>Add Message</button>
+// </div>
+// );
+// }
+
+
+function StopWatch() {
+  const [time, setTime] = useState(0);
 }
-
 
 
 function Apps() {
