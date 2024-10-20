@@ -36,16 +36,25 @@ const addMessages = () => {
 // Scroll to the bottom whenever a new message is added
 useEffect(() => {
 
-});
+} []);
 
 
+
+
+return (
+  <div>
+  <div 
+    ref={chatBoxRef} 
+    style={{ height: "200px", overflowY: "scroll", border: "1px solid black" }}
+  >
+    {messages.map((msg, index) => (
+      <div key={index}>{msg}</div>
+    ))}
+  </div>
+  <button onClick={addMessage}>Add Message</button>
+</div>
+);
 }
-
-
-
-
-
-
 
 
 
