@@ -70,7 +70,7 @@ function Stopwatch() {
   };
 const stopTimer = () => {
   clearInterval(intervalref.current);
-  intervalref.current = null;
+          intervalref.current = null;
 };
 
 
