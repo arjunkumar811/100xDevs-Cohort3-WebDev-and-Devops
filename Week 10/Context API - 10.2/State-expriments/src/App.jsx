@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import ToggleMessage from './../../../../Week 09 - Offline/9.2 (Offline) part -2/Conditional Rendering/src/App';
+
 
 function App() {
  return <div>
@@ -9,22 +9,31 @@ function App() {
 
 
 function LightBulb(){
+  const [Bulbon, setBulbon] = useState(true);
+
   return <div>
-    <BulbState />
-    <ToggleBulbState />
+    <BulbState Bulbon={Bulbon} />
+    <ToggleBulbState Bulbon={Bulbon}  setBulbon={setBulbon} />
   </div>
 }
 
 
-function BulbState(){
+function BulbState({Bulbon}){
   return <div>
-
+{Bulbon ? "Bulb On" : "Bulb Off"}
   </div>
 }
 
-function ToggleMessage() {
+
+
+function ToggleBulbState({Bulbon, setBulbon}) {
+
+  function Toggle() {
+    setBulbon(!Bulbon);
+    } 
+
   return <div>
-    <button>Toggle the bulb</button>
+    <button onClick={Toggle}>Toggle the bulb</button>
   </div>
 }
 
