@@ -6,7 +6,6 @@ import { BrowserRouter, Routes, Route, Link , Outlet} from "react-router-dom";
 
 function App() {
   
-
   return (
     <div>
       <BrowserRouter>
@@ -73,7 +72,6 @@ function Class12Program() {
   </div>
   }
 }
-
 
 
 export default App
