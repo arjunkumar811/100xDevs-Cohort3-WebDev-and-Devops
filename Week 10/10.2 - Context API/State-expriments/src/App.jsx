@@ -3,7 +3,6 @@ import { useState , useContext, createContext} from 'react'
 
 const BulbContext = createContext();
 
-
 function App() { 
   const [Bulbon, setBulbon] = useState(true);
 
@@ -19,7 +18,6 @@ function App() {
  </div>
  );
 }
-
 
 function LightBulb() {
   return (
