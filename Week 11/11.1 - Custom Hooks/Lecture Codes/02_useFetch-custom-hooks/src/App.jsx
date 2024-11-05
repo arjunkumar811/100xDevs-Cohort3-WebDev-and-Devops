@@ -2,25 +2,14 @@ import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import { usePostTitle } from './hooks/useFetch';
 
 function App() {
-  const [posts, setPosts] = useState({});
-
- async function getPosts() {
-  const response = await fetch ("https://jsonplaceholder.typicode.com/todos/1");
-  const json = await response.json();
-  setPosts(json);
-}
-
-
-  useEffect(() => {
-   getPosts();
-  }, []) 
+  const postTitle = usePostTitle();
 
   return (
     <>
-    {posts.userId}
-    {posts.title}
+    {postTitle}
     </>
   )
 }
