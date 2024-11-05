@@ -16,3 +16,30 @@ export function usePostTitle() {
 
      return posts.title;
 }
+
+
+
+
+export const useFetch = (url) => {
+
+const [finalData, setFinalData] = useState({});
+
+const [loading, setLoading] = useState(true);
+
+async function getDetails() {
+    setLoading(true);
+    const response = await fetch(url);
+    const json = response.json();
+
+    setFinalData(json)
+
+    setLoading(false);
+}
+
+useEffect(() => {
+ getDetails();
+}, [url]);
+
+
+return {finalData, loading}
+} 
