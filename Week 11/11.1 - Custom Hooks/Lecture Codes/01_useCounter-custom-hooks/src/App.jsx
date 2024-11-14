@@ -1,37 +1,50 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
 
+import { useState } from "react";
 
+// Custom Hook - useCounter
+// Create a custom hook called useCounter 
 function useCounter() {
-const [count , setCount] = useState(0);
+    // Create a state variable called count and a function to update it called setCount to manage the state of the count variable
+    const [count, setCount] = useState(0);
 
-function increase() {
-  setCount(count + 1);
+    // function to increase the count by 1 
+    function increaseCount() {
+        // Increment the count state variable by 1 
+        setCount(count + 1);
+    }
+
+    // Return the count and increaseCount function to be used in other components 
+    return { count, increaseCount };
 }
 
-return { count, increase }
-}
-
+// Create a function component named App that serves as the main application component
 function App() {
- 
-  return (
-    <>
-      <Counter />
-    
-    </>
-  )
+
+    // Return the JSX for the component 
+    return (
+        <div>
+            {/* Render the Counter component */}
+            <Counter />
+
+            {/* Render the Counter component */}
+            <Counter />
+        </div>
+    );
 }
 
+// Create a function component named Counter that displays a button to increase the count 
 function Counter() {
- const {count, increase} = useCounter();
+    // Destructure the count and increaseCount function from the useCounter custom hook
+    const { count, increaseCount } = useCounter();
 
-
-  return <div>
-    {count}
-    <button onClick={increase}>increase</button>
-  </div>
+    // Return the JSX for the component
+    return (
+        <div>
+            {/* Display the count value */}
+            <button onClick={increaseCount}>Increase {count}</button>
+        </div>
+    );
 }
 
-export default App
+// Export the App component as the default export from this module
+export default App;
