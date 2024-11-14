@@ -1,4 +1,4 @@
-import { useRecoilValue, RecoilRoot, useRecoilState } from 'recoil';
+import { useRecoilValue, RecoilRoot, useRecoilState, useSetRecoilState } from 'recoil';
 import { jobsAtom, MesssageAtom, NetworkAtom, NotificationAtom } from './atom';
 
 function App() {
@@ -15,7 +15,7 @@ function MainApp() {
   const messageCount = useRecoilValue(MesssageAtom);
   const notificationCount = useRecoilValue(NotificationAtom);
   const  [message, setMessage] = useRecoilState(MesssageAtom);
-
+const messagingAtonCount = useRecoilValue(MesssageAtom);
   return (
     <>
       <button>Home</button>
@@ -27,5 +27,16 @@ function MainApp() {
     </>
   );
 }
+
+
+function ButtonUpdater() {
+  const setMessageAtomCount = useSetRecoilState(MesssageAtom);
+  return <button onClick={() => {
+    setMessageAtomCount(c => 1);
+  }}>
+ME
+  </button>
+}
+
 
 export default App;
