@@ -1,17 +1,13 @@
 
 import './App.css'
-import { Flex } from './Flex';
-import { Color } from './Colors';
-import { Grid } from './Grids';
+import { ResponsivenessExample } from './Responsive'
+
 
 
 function App() {
   return (
     <>
-    <Grid />
-    <Flex />
-    <Color />
-<Grid />
+    <ResponsivenessExample />
     </>
   )
 }
