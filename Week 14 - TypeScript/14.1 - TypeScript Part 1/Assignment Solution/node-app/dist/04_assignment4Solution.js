@@ -1,6 +1,6 @@
 "use strict";
-// Problem 1 - Hello world
-function isLegal(user) {
+// Create a function isLegalUser that returns true or false if a user is above 18. It takes a user as an input.
+function isLegalUser(user) {
     if (user.age > 18)
         return true;
     else
@@ -12,4 +12,4 @@ const testUser = {
     email: "kumararjun26401@gmail.com",
     age: 20,
 };
-console.log(isLegal(testUser));
+console.log(isLegalUser(testUser)); //true
