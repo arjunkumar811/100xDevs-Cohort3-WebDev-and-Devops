@@ -19,4 +19,4 @@ function isEven(num) {
         return false;
 }
 let answer = isEven(25);
-console.log(answer);
+console.log(answer); //false
