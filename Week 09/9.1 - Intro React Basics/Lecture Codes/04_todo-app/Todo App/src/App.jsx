@@ -1,35 +1,75 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [todos, setTodos] = useState([
+    {
+      title: "Go to gym",
+      description: "Hit the gym regularly",
+      done: false,
+    },
+  ]);
 
+  // Function to add a new todo item
+  function addTodo() {
+    setTodos([
+      ...todos,
+      {
+        title: document.getElementById("title").value,
+        description: document.getElementById("description").value,
+        done: false,
+      },
+    ]);
+
+
+    document.getElementById("title").value = "";
+    document.getElementById("description").value = "";
+  }
+
+  // Return the JSX to render the component
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+    <div className="main">
+      <h1 className="header">Todo App</h1>
+      <div className="form-container">
+        <input
+          id="title"
+          className="input-field"
+          type="text"
+          placeholder="Enter Todo Title"
+        />
+        <input
+          id="description"
+          className="input-field"
+          type="text"
+          placeholder="Write Todo Description"
+        />
+        <button className="add-btn" onClick={addTodo}>
+          Add Todo
         </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+
+      <div className="todo-list">
+        {todos.map((todo, index) => (
+          <Todo
+            key={index}
+            title={todo.title}
+            description={todo.description}
+            done={todo.done}
+          />
+        ))}
+      </div>
+    </div>
+  );
 }
 
-export default App
+function Todo({ title, description, done }) {
+  return (
+    <div className="todo-item">
+      <h3 className="todo-title">{title}</h3>
+      <p className="todo-description">{description}</p>
+      <p className="todo-status">{done ? "✅ Task is Done" : "❌ Task is Not Done"}</p>
+    </div>
+  );
+}
+
+export default App;
