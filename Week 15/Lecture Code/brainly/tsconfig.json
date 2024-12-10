@@ -2,11 +2,6 @@
   "compilerOptions": {
     "rootDir": "./src",
     "outDir": "./dist",
-    "target": "ES6",
-    "module": "CommonJS",
-    "moduleResolution": "Node",
-    "esModuleInterop": true,
-    "strict": true
     /* Visit https://aka.ms/tsconfig to read more about this file */
 
     /* Projects */
