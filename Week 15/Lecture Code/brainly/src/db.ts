@@ -9,6 +9,7 @@ const userSchema = new Schema ({
   lastName: String,
 });
 
+export const UserModel = model("User", userSchema);
 
 const ContentSchema = new Schema ({
   title: String,
@@ -24,4 +25,3 @@ export const ContentModel = model("Content", ContentSchema);
 
 
 
-export const UserModel = model("User", userSchema);

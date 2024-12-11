@@ -33,7 +33,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserModel = exports.ContentModel = void 0;
+exports.ContentModel = exports.UserModel = void 0;
 const mongoose_1 = __importStar(require("mongoose"));
 mongoose_1.default.connect("mongodb://localhost:27017/brainly");
 const userSchema = new mongoose_1.Schema({
@@ -42,6 +42,7 @@ const userSchema = new mongoose_1.Schema({
     firstName: String,
     lastName: String,
 });
+exports.UserModel = (0, mongoose_1.model)("User", userSchema);
 const ContentSchema = new mongoose_1.Schema({
     title: String,
     link: String,
@@ -49,4 +50,3 @@ const ContentSchema = new mongoose_1.Schema({
     UserId: { type: mongoose_1.default.Types.ObjectId, ref: 'User', require: true }
 });
 exports.ContentModel = (0, mongoose_1.model)("Content", ContentSchema);
-exports.UserModel = (0, mongoose_1.model)("User", userSchema);
