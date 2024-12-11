@@ -16,15 +16,17 @@ const express_1 = __importDefault(require("express"));
 const zod_1 = require("zod");
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const db_1 = require("./db");
+const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+const JWT_Token_pass = 'arjunkumar';
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
-const requireBody = zod_1.z.object({
-    username: zod_1.z.string().min(5),
-    password: zod_1.z.string().min(5),
-    firstName: zod_1.z.string().min(3),
-    lastName: zod_1.z.string().min(3),
-});
 app.post("/api/v1/signup", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const requireBody = zod_1.z.object({
+        username: zod_1.z.string().min(5),
+        password: zod_1.z.string().min(5),
+        firstName: zod_1.z.string().min(3),
+        lastName: zod_1.z.string().min(3),
+    });
     const parseDataWithSuccess = requireBody.safeParse(req.body);
     if (!parseDataWithSuccess.success) {
         res.status(400).json({
@@ -49,10 +51,50 @@ app.post("/api/v1/signup", (req, res) => __awaiter(void 0, void 0, void 0, funct
         });
     }
 }));
-app.post("/api/v1/signin", (req, res) => {
-    const username = req.body.username;
-    const password = req.body.password;
-});
+app.post("/api/v1/signin", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const requireBody = zod_1.z.object({
+        username: zod_1.z.string().email(),
+        password: zod_1.z.string().min(6),
+    });
+    const parseDataWithSuccess = requireBody.safeParse(req.body);
+    if (!parseDataWithSuccess) {
+        res.status(400).json({
+            message: "Incorrect Cridential",
+        });
+        return;
+    }
+    const { username, password } = req.body;
+    const Find = yield db_1.UserModel.findOne({
+        username
+    });
+    if (!Find) {
+        res.status(403).json({
+            message: "Invalid Credentials!",
+        });
+        return;
+    }
+    const passwordMatch = yield bcrypt_1.default.compare(password, Find.password);
+    if (!passwordMatch) {
+        res.status(403).json({
+            message: "Invalid Credentials!",
+        });
+        return;
+    }
+    if (passwordMatch) {
+        const token = jsonwebtoken_1.default.sign({
+            id: Find._id
+        }, JWT_Token_pass);
+        // { expiresIn: "1h" }
+        res.status(200).json({
+            token,
+        });
+    }
+    else {
+        res.status(403).json({
+            message: "Invalid Credentials!",
+        });
+    }
+}));
 app.post("/api/v1/content", (req, res) => {
 });
 app.get("/api/v1/content", (req, res) => {
