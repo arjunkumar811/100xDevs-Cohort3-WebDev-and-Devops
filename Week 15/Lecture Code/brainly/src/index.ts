@@ -3,10 +3,12 @@ import { Request, Response } from 'express';
 import express from 'express';
 import { z } from 'zod';
 import bcrypt from 'bcrypt';
-import { UserModel } from './db';
+import { ContentModel, UserModel } from './db';
 import jwt from "jsonwebtoken";
 import mongoose from 'mongoose';
-const JWT_Token_pass = 'arjunkumar';
+import { JWT_Token_pass } from './config';
+import { userMiddleware } from './middleware';
+
 
 
 
@@ -56,7 +58,6 @@ const hashedPassword = await bcrypt.hash(password, 10);
 }
 
 })  
-
 
 
 
@@ -116,8 +117,21 @@ if (passwordMatch) {
 });
 
 
-app.post("/api/v1/content", (req, res) => {
-    
+app.post("/api/v1/content", userMiddleware, async (req, res) => {
+    const link = req.body.link;
+    const title = req.body.title;
+    await ContentModel.create({
+        link,
+        title,
+        //@ts-ignore
+        UserId: req.userId,
+        tags: []
+    })
+
+     res.json({
+        message: "Content added"
+    })
+
 })
 
 app.get("/api/v1/content", (req, res) => {

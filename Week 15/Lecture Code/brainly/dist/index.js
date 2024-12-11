@@ -17,7 +17,8 @@ const zod_1 = require("zod");
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const db_1 = require("./db");
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-const JWT_Token_pass = 'arjunkumar';
+const config_1 = require("./config");
+const middleware_1 = require("./middleware");
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.post("/api/v1/signup", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -83,7 +84,7 @@ app.post("/api/v1/signin", (req, res) => __awaiter(void 0, void 0, void 0, funct
     if (passwordMatch) {
         const token = jsonwebtoken_1.default.sign({
             id: Find._id
-        }, JWT_Token_pass);
+        }, config_1.JWT_Token_pass);
         // { expiresIn: "1h" }
         res.status(200).json({
             token,
@@ -95,8 +96,20 @@ app.post("/api/v1/signin", (req, res) => __awaiter(void 0, void 0, void 0, funct
         });
     }
 }));
-app.post("/api/v1/content", (req, res) => {
-});
+app.post("/api/v1/content", middleware_1.userMiddleware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const link = req.body.link;
+    const title = req.body.title;
+    yield db_1.ContentModel.create({
+        link,
+        title,
+        //@ts-ignore
+        UserId: req.userId,
+        tags: []
+    });
+    res.json({
+        message: "Content added"
+    });
+}));
 app.get("/api/v1/content", (req, res) => {
 });
 app.delete("/api/v1/content", (req, res) => {
