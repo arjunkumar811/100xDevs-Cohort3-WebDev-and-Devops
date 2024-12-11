@@ -38,6 +38,8 @@ const mongoose_1 = __importStar(require("mongoose"));
 mongoose_1.default.connect("mongodb://localhost:27017/brainly");
 const userSchema = new mongoose_1.Schema({
     username: { type: String, unique: true },
-    password: String
+    password: { type: String, required: true },
+    firstName: String,
+    lastName: String,
 });
 exports.UserModel = (0, mongoose_1.model)("User", userSchema);
