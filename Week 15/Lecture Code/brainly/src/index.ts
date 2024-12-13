@@ -1,7 +1,7 @@
 
 import { Request, Response } from 'express';
 import express from 'express';
-import { z } from 'zod';
+import { z } from 'zod'; 
 import bcrypt from 'bcrypt';
 import { ContentModel, UserModel } from './db';
 import jwt from "jsonwebtoken";
@@ -146,7 +146,7 @@ app.get("/api/v1/content", userMiddleware, async (req, res) => {
     })
 })
 
-app.delete("/api/v1/content", async userMiddleware, (req, res) => {
+app.delete("/api/v1/content", async userMiddleware, (req: Request, res: Response) => {
     const contentId = req.body.contentId;
 
     await ContentModel.deleteMany({
