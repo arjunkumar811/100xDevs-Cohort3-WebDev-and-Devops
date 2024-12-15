@@ -19,6 +19,7 @@ const db_1 = require("./db");
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const config_1 = require("./config");
 const middleware_1 = require("./middleware");
+const util_1 = require("./util");
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.post("/api/v1/signup", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -103,7 +104,7 @@ app.post("/api/v1/content", middleware_1.userMiddleware, (req, res) => __awaiter
         link,
         title,
         //@ts-ignore
-        UserId: req.userId,
+        userId: req.userId,
         tags: []
     });
     res.json({
@@ -114,16 +115,42 @@ app.get("/api/v1/content", middleware_1.userMiddleware, (req, res) => __awaiter(
     //@ts-ignore
     const userId = req.userId;
     const content = yield db_1.ContentModel.find({
-        UserId: userId
-    });
+        userId: userId
+    }).populate("userId", "username");
     res.json({
         content
     });
 }));
-app.delete("/api/v1/content", (req, res) => {
-});
-app.post("/api/v1/brain/:share", (req, res) => {
-});
+app.delete("/api/v1/content", middleware_1.userMiddleware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const contentId = req.body.contentId;
+    yield db_1.ContentModel.deleteMany({
+        contentId,
+        //@ts-ignore
+        userId: req.userId
+    });
+    res.json({
+        message: "Message as been Deleted",
+    });
+}));
+app.post("/api/v1/brain/:share", middleware_1.userMiddleware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const share = req.body.share;
+    if (share) {
+        db_1.LinkModel.create({
+            // @ts-ignore
+            userId: req.userId,
+            hash: (0, util_1.random)(10)
+        });
+    }
+    else {
+        yield db_1.LinkModel.deleteOne({
+            // @ts-ignore
+            userId: req.userId,
+        });
+    }
+    res.json({
+        message: "Updated sharable link"
+    });
+}));
 app.get("/api/v1/brain/:shareLink", (req, res) => {
 });
 app.listen(3000);
