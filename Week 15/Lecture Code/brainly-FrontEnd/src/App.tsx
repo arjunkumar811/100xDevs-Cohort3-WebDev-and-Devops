@@ -11,7 +11,7 @@ function App() {
 
     <Button variant='primary' text='Add Content' startIcon={<PlusIcon />}></Button> 
     <Button variant='secondary' text='Share Brain' startIcon={<ShareIcon />}></Button> 
-    <Card />
+    <Card type='youtype' link='https://www.youtube.com/watch?v=_zYqdyX1ZTo' title='Inspiring video'  />
 
 
     </div>
