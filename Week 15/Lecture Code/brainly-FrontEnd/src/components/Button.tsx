@@ -17,7 +17,7 @@ const variantStyle = {
 export function Button({ variant, text, startIcon}: ButtonProps) {
   return (
     <button className={`${variantStyle[variant]} ${defaultStyles}`}>
-      <div className="pr-2">
+      <div className="pr-2 cursor-pointer">
             {startIcon}
         </div>
       {text}
