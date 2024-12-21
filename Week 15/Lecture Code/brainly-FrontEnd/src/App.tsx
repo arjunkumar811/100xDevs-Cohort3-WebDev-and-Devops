@@ -7,12 +7,22 @@ function App() {
 
 
   return (
-    <div> 
+    <div className='p-4'> 
 
+<div className="flex justify-end gap-4">
     <Button variant='primary' text='Add Content' startIcon={<PlusIcon />}></Button> 
     <Button variant='secondary' text='Share Brain' startIcon={<ShareIcon />}></Button> 
-    <Card type='youtype' link='https://www.youtube.com/watch?v=_zYqdyX1ZTo' title='Inspiring video'  />
+    </div>
+    
+    <div className="flex gap-6">
+    
 
+
+    <Card type='youtype' link='https://www.youtube.com/watch?v=_zYqdyX1ZTo' title='Inspiring video'  />
+    <Card type='twitter' link='https://x.com/Arjun2950618011/status/1850576837317198257' title='My Post'  />
+    <Card type='twitter' link='https://x.com/cb_doge/status/1869524493888360703' title='Elon'  />
+  
+    </div>
 
     </div>
   )
