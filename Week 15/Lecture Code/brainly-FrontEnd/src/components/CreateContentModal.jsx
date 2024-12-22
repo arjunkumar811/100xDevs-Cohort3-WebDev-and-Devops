@@ -9,7 +9,7 @@ export function CreateContentModal({open, onClose}) {
 <div className="flex flex-col justify-center">
     <span className="bg-white opacity-100 p-4 rounded">
         <div className="flex justify-end">
-            <div onClick={onClose}> <CrossIcon /> </div>
+            <div onClick={onClose} className="cursor-pointer"> <CrossIcon /> </div>
         </div>
         <div>
   <Input placeholder={"Title"} />
