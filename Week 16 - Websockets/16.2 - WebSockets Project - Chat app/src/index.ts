@@ -21,4 +21,8 @@ allSockets.push(socket);
         }
     })
 
+    socket.on("disconnect" , () => {
+        allSockets = allSockets.filter(x => x != socket);
+    })
+
 })
