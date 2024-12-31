@@ -39,14 +39,13 @@ mongoose_1.default.connect("mongodb://localhost:27017/brainly");
 const userSchema = new mongoose_1.Schema({
     username: { type: String, unique: true },
     password: { type: String, required: true },
-    firstName: String,
-    lastName: String,
 });
 exports.UserModel = (0, mongoose_1.model)("User", userSchema);
 const ContentSchema = new mongoose_1.Schema({
     title: String,
     link: String,
     tag: [{ type: mongoose_1.default.Types.ObjectId, ref: 'Tag' }],
+    type: String,
     userId: { type: mongoose_1.default.Types.ObjectId, ref: 'User', require: true }
 });
 exports.ContentModel = (0, mongoose_1.model)("Content", ContentSchema);

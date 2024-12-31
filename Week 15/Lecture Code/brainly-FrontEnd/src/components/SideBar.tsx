@@ -7,8 +7,8 @@ export function SideBar() {
     return <div className="h-screen bg-white border-r w-72 fixed left-0 top-0 text-black">
   
 <div className="flex text-xl
-pl-4 font-montserrat cursor-pointer">
-  <div className="pr-1 flex items-center text-purple-600 cursor-pointer "><BrainIcon /></div>
+pl-4 font-montserrat cursor-pointer pt-4">
+  <div className="pr-1  flex items-center text-purple-600 cursor-pointer "><BrainIcon /></div>
     
     Brainly
     </div>

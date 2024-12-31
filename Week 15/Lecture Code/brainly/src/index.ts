@@ -1,7 +1,7 @@
 
 import { Request, Response } from 'express';
 import express from 'express';
-import { z } from 'zod'; 
+import { string, z } from 'zod'; 
 import bcrypt, { hash } from 'bcrypt';
 import { ContentModel, LinkModel, UserModel } from './db';
 import jwt from "jsonwebtoken";
@@ -9,12 +9,16 @@ import { JWT_Token_pass } from './config';
 import { userMiddleware } from './middleware';
 import { random } from './util';
 import mongoose from 'mongoose';
+import cors from 'cors';
 
 
+
+         
 
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 
 
@@ -23,8 +27,6 @@ app.post("/api/v1/signup", async (req: Request, res: Response): Promise<void> =>
     const requireBody = z.object({
         username: z.string().min(5),
         password: z.string().min(5),
-        firstName: z.string().min(3),
-        lastName: z.string().min(3),
     });
     
 
@@ -120,10 +122,11 @@ if (passwordMatch) {
 
 app.post("/api/v1/content", userMiddleware, async (req, res) => {
     const link = req.body.link;
-    const title = req.body.title;
+    const type = req.body.type;
     await ContentModel.create({
         link,
-        title,
+        type,
+        title: req.body.title,
         //@ts-ignore
         userId: req.userId,
         tags: []

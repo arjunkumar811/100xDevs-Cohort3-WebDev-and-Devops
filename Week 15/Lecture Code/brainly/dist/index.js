@@ -20,14 +20,14 @@ const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const config_1 = require("./config");
 const middleware_1 = require("./middleware");
 const util_1 = require("./util");
+const cors_1 = __importDefault(require("cors"));
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
+app.use((0, cors_1.default)());
 app.post("/api/v1/signup", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const requireBody = zod_1.z.object({
         username: zod_1.z.string().min(5),
         password: zod_1.z.string().min(5),
-        firstName: zod_1.z.string().min(3),
-        lastName: zod_1.z.string().min(3),
     });
     const parseDataWithSuccess = requireBody.safeParse(req.body);
     if (!parseDataWithSuccess.success) {
@@ -99,10 +99,11 @@ app.post("/api/v1/signin", (req, res) => __awaiter(void 0, void 0, void 0, funct
 }));
 app.post("/api/v1/content", middleware_1.userMiddleware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const link = req.body.link;
-    const title = req.body.title;
+    const type = req.body.type;
     yield db_1.ContentModel.create({
         link,
-        title,
+        type,
+        title: req.body.title,
         //@ts-ignore
         userId: req.userId,
         tags: []
@@ -148,9 +149,35 @@ app.post("/api/v1/brain/:share", middleware_1.userMiddleware, (req, res) => __aw
         });
     }
     res.json({
-        message: "Updated sharable link"
+        message: "Removed link"
     });
 }));
-app.get("/api/v1/brain/:shareLink", (req, res) => {
-});
+app.get("/api/v1/brain/:shareLink", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const hash = req.params.shareLink;
+    const link = yield db_1.LinkModel.findOne({
+        hash
+    });
+    if (!link) {
+        res.status(411).json({
+            message: "Sorry incorrect input"
+        });
+        return;
+    }
+    const content = yield db_1.ContentModel.find({
+        userId: link.userId
+    });
+    const user = yield db_1.UserModel.findOne({
+        _id: link.userId
+    });
+    if (!user) {
+        res.status(411).json({
+            message: "User not found"
+        });
+        return;
+    }
+    res.json({
+        username: user.username,
+        content: content
+    });
+}));
 app.listen(3000);
