@@ -1,6 +1,7 @@
 "use client";
 
 import axios from "axios";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -25,6 +26,7 @@ export default function Signup() {
         password
     })
     router.push("/signin")
+// use link to navigate the page
 }}>
 Sign up
 </button>
