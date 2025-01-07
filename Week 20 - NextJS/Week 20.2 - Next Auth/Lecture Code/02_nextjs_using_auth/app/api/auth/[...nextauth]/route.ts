@@ -1,6 +1,7 @@
 import NextAuth from "next-auth";
 import { NextResponse } from "next/server";
-import CredentialsProvider from "next-auth/providers/credentials";
+import CredentialsProvider from "next-auth/providers/credentials"; 
+
 
 const handler = NextAuth({
     providers: [
@@ -27,7 +28,8 @@ const handler = NextAuth({
         })
     ],
     // for server side rendering
-    secret: process.env.NEXTAUTH_SECRET,
+
+    // secret: process.env.NEXTAUTH_SECRET,
 })
 
 export const GET = handler;
