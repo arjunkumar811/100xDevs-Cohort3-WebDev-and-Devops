@@ -1,5 +1,5 @@
 {
-  "name": "chart-app",
+  "name": "draw-application",
   "private": true,
   "scripts": {
     "build": "turbo build",
@@ -9,16 +9,11 @@
   },
   "devDependencies": {
     "prettier": "^3.2.5",
-    "tailwindcss": "^3.4.17",
     "turbo": "^2.3.3",
     "typescript": "5.5.4"
   },
+  "packageManager": "pnpm@9.0.0",
   "engines": {
     "node": ">=18"
-  },
-  "packageManager": "npm@10.8.3",
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ]
+  }
 }
