@@ -1,5 +1,5 @@
 import { WebSocketServer } from 'ws';
-import jwt from "jsonwebtoken";
+import jwt, { JwtPayload } from "jsonwebtoken";
 import { JWT_SECRET } from './config';
 
 const wss = new WebSocketServer({ port: 8080 });
@@ -12,15 +12,14 @@ if(!url) {
 } 
 
 const queryParams = new URLSearchParams(url.split('?')[1]);
-const token = queryParams.get('token');
+const token = queryParams.get('token') || "";
 
 const decoded = jwt.verify(token, JWT_SECRET);
 
-if(!decoded) {
-    
-} else {
-    
-}
+if(!decoded || !(decoded as JwtPayload).username) {
+    ws.close();
+    return
+} 
 
     ws.on('message', function message(data) {
         ws.send("hi there")
