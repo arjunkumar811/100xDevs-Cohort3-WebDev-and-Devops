@@ -1,7 +1,8 @@
 import express from "express"
 import jwt from "jsonwebtoken";
-import { JWT_SECRET } from "./config";
+
 import { middleware } from "./middleware";
+import { JWT_SECRET } from '@repo/backend-comman/config';
 
 const app = express();
 app.use(express.json());
