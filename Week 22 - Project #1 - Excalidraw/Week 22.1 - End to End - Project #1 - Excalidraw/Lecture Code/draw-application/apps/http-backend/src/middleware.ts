@@ -6,9 +6,9 @@ export function middleware(req: Request, res: Response, next: NextFunction) {
     const token = req.headers["authorization"]?.split(" ")[1] ?? ""; 
 
     try {
-        const decoded = jwt.verify(token, JWT_SECRET) as { username: string };
+        const decoded = jwt.verify(token, JWT_SECRET) as { email: string };
      //@ts-ignore
-        req.username = decoded.username; 
+        req.email = decoded.email; 
         next(); 
     } catch (error) {
         res.status(403).json({
