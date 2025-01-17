@@ -10,7 +10,7 @@
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
     "@repo/backend-comman" : "workspace:*",
-    "@repo/comman" : "workspace:*"
+    "@repo/comman" : "workspace:*",
   },
   "keywords": [],
   "author": "",
@@ -20,6 +20,7 @@
     "@types/express": "^5.0.0",
     "@types/jsonwebtoken": "^9.0.7",
     "express": "^4.21.2",
-    "jsonwebtoken": "^9.0.2"
+    "jsonwebtoken": "^9.0.2",
+    "@repo/db": "workspace:*"
   }
 }
