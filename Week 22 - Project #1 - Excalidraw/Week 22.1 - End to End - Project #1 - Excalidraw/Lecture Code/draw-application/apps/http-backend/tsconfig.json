@@ -1,7 +1,15 @@
 {
-    "extends":"@repo/typescript-config/base.json",
+    "extends": "@repo/typescript-config/base.json",
+     
     "compilerOptions": {
-        "rootDir": "./src",
-        "outDir": "./dist"
-    }
+      "module": "ESNext",          // Use ESNext for the module system
+      "moduleResolution": "nodenext", // Use node resolution for ES modules
+      "target": "ESNext",          // Use the latest ECMAScript version
+      "esModuleInterop": true,     // Ensure compatibility with commonjs modules
+      "skipLibCheck": true,        // Skip checking type definitions
+      "forceConsistentCasingInFileNames": true,
+    "outDir": "./dist",
+    "rootDir": "./src"
+  }
 }
+  
