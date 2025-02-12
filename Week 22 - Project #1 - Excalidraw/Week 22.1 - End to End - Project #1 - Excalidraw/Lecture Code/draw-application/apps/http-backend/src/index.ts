@@ -1,10 +1,10 @@
 import express from "express"
 import jwt from "jsonwebtoken";
 
-import { middleware } from "./middleware";
 import { JWT_SECRET } from '@repo/backend-comman/config';
 import { CreateUserSchema, SigninSchema, CreateRoomSchema } from '@repo/comman/types';
 import { prismaClient } from "@repo/db/client";
+
 
 
 const app = express();
@@ -56,9 +56,11 @@ const token = jwt.sign({
 
 
 
-app.post("/room", middleware, function(req, res) {
+// app.post("/room", middleware, function(req, res) {
 
-    res.json({
-        messgae: "you have been signup"
-    })
-})
+//     res.json({
+//         messgae: "you have been signup"
+//     })
+// })*/
+
+app.listen(3001);
